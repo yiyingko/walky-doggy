@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import Events from '../../../components/Events';
-import Event from '../../../components/Event';
 import { useState, useEffect } from "react";
-
+// import React, { useState, createContext, useContext,useEffect } from "react";
+// const EventContext = createContext(null);
 
 const walker = () => {
+  //const { events, setEvents,useEffect,fetchEvents,deleteEvent } = useContext(EventContext);
     const [events, setEvents] = useState(() =>[]);
-  
+   
     useEffect(() => {
       const getEvents = async () => {
         const eventsServer = await fetchEvents();
@@ -32,7 +33,7 @@ const walker = () => {
         setEvents(events.filter((event) => event._id !== _id));
       });
     }
-
+   
   return (
     <>
       <Head>
@@ -40,8 +41,9 @@ const walker = () => {
       </Head>
       <div>walker's event </div>
       <Link href="/walkform">Walkform</Link>
-      <Events events={events} />
-      {/* onDelete={deleteEvent} */}
+
+      <Events events={events} onDelete={deleteEvent} />
+      
     </>
   );
 };

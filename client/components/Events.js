@@ -4,7 +4,8 @@ import NextEvent from "./NextEvent";
 
 
 
-const Events = ({ events }) => {
+const Events = ({ events, onDelete }) => {
+  //const events = useContext(EventContext)
   return (
     <div id="list">
       { events.map((event, index) => {
@@ -12,7 +13,7 @@ const Events = ({ events }) => {
           if (index === 0) {
             return <NextEvent key={index} event={event} /> 
           } else {
-            return <Event key={index} event={event} events={events} />
+            return <Event key={index} event={event} events={events} onDelete={onDelete}/>
           }
       })}
     </div>

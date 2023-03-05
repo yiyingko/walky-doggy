@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Events from "../../../components/Events";
-
+//import {EventContextProvider} from "../../../components/EventContextComponent";
+// import EventContext from "../../../components/EventContext";
+// import { EventContextProvider } from "../../../components/EventContextProvider";
 
 const viewwalks = () => {
   const [events, setEvents] = useState(() =>[]);
@@ -21,10 +23,7 @@ const viewwalks = () => {
 
     return data;
   };
-
-
-  
-  
+ 
   const deleteEvent = async (_id) => {
     await fetch(`http://localhost:3001/events/${_id}`, {
       method: "DELETE",
@@ -40,7 +39,9 @@ const viewwalks = () => {
         <title>Walky Doggy | view walks</title>
       </Head>
       <div>view my walks </div>
-      <Events events={events} />
+    
+      <Events events={events} onDelete={deleteEvent} />
+     
     </> 
     )
   }

@@ -14,8 +14,6 @@ const bookawalk = () => {
   };
   
   const addEvent = async (event) => {
-    // POST the new Event and then fetch the full list againg to refresh the page in the correct order.
-    // Sorting is done by Mongo
     fetch("http://localhost:3001/events", {
       method: "POST",
       headers: {

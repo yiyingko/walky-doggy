@@ -1,29 +1,11 @@
 import moment from 'moment'
 import Link from 'next/link';
 import { useRouter } from 'next/router'
-import { BsFillTrash2Fill} from "react-icons/bs";
+import { FaTrash} from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 
-const Event = ({ event}) => {
-  const [events, setEvents] = useState(() =>[]);
-  
-
-  const fetchEvents = async () => {
-    const res = await fetch("http://localhost:3001/events");
-    const data = await res.json();
-
-    return data;
-  };
-
-  const deleteEvent = async (_id) => {
-    await fetch(`http://localhost:3001/events/${_id}`, {
-      method: "DELETE",
-    }).then(()=> {
-      console.log("deleteevent: " + JSON.stringify(deleteEvent));
-      setEvents(events.filter((event) => event._id !== _id));
-    });
-  }
+const Event = ({ event, onDelete}) => {
 
   return (
     <div>
@@ -43,8 +25,8 @@ const Event = ({ event}) => {
           </div>
           <div className='btn-dev'>
           <Link href={`/form/${event._id}`}><button className='btn' >Click</button></Link>
-          <BsFillTrash2Fill className="dele-btn"
-          onClick={() => deleteEvent(event._id)}/>
+          <FaTrash className="dele-btn"
+          onClick={() => onDelete(event._id)}/>
           </div>
         </div>
       </div>
