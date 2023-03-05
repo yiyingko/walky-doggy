@@ -40,7 +40,7 @@ const viewwalks = () => {
       </Head>
       <div>view my walks </div>
     
-      <Events events={events} onDelete={deleteEvent} />
+      <Events events={events} onDelete={deleteEvent} formPath="/formuser/" />
      
     </> 
     )

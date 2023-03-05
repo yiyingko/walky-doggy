@@ -42,7 +42,7 @@ const walker = () => {
       <div>walker's event </div>
       <Link href="/walkform">Walkform</Link>
 
-      <Events events={events} onDelete={deleteEvent} />
+      <Events events={events} onDelete={deleteEvent} formPath="/form/" />
       
     </>
   );

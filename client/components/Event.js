@@ -5,7 +5,7 @@ import { FaTrash} from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 
-const Event = ({ event, onDelete}) => {
+const Event = ({ event, onDelete, formPath}) => {
 
   return (
     <div>
@@ -24,7 +24,7 @@ const Event = ({ event, onDelete}) => {
             </div>
           </div>
           <div className='btn-dev'>
-          <Link href={`/form/${event._id}`}><button className='btn' >Click</button></Link>
+          <Link href={`${formPath}${event._id}`}><button className='btn' >Click</button></Link>
           <FaTrash className="dele-btn"
           onClick={() => onDelete(event._id)}/>
           </div>

@@ -4,7 +4,7 @@ import NextEvent from "./NextEvent";
 
 
 
-const Events = ({ events, onDelete }) => {
+const Events = ({ events, onDelete, formPath }) => {
   //const events = useContext(EventContext)
   return (
     <div id="list">
@@ -13,7 +13,7 @@ const Events = ({ events, onDelete }) => {
           if (index === 0) {
             return <NextEvent key={index} event={event} /> 
           } else {
-            return <Event key={index} event={event} events={events} onDelete={onDelete}/>
+            return <Event key={index} event={event} events={events} onDelete={onDelete} formPath={formPath}/>
           }
       })}
     </div>
