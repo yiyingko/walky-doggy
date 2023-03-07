@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const recordSchema = new Schema({
   eventId : String,
-  wee: Boolean,
+  pee: Boolean,
   poo: Boolean
 });
 

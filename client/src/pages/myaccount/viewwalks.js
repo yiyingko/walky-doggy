@@ -39,7 +39,6 @@ const viewwalks = () => {
         <title>Walky Doggy | view walks</title>
       </Head>
       <div>view my walks </div>
-    
       <Events events={events} onDelete={deleteEvent} formPath="/formuser/" />
      
     </> 

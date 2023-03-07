@@ -1,12 +1,56 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useState } from "react";
+import AddRecord from "../../../components/AddRecord";
 
 const form = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-  /** img uploader */
+/**record */
+const [record, setRecord] = useState(false);
+
+  const fetchRecord = async () => {
+    const res = await fetch(`http://localhost:3001/records/${_id}`);
+    const data = await res.json();
+
+    return data;
+  };
+  
+  const addRecord = async (record) => {
+    fetch("http://localhost:3001/records", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(record),
+    }).then(result => console.log("savedRecords: " + JSON.stringify(result)));
+  
+  };
+
+
+/* collect geo location data*/
+  
+  const coordinates =[];
+  const startTracking = ()=> {
+
+    navigator.geolocation.watchPosition(
+      data=>{
+        console.log(data);
+        coordinates.push([data.coords.longitude,data.coords.latitude]);
+        window.localStorage.setItem("coordinates",JSON.stringify(coordinates));
+      },
+      error => console.log(error),{
+        enableHighAccuracy: true
+      }
+    );
+  }
+
+  const stopTracking = ()=>{
+    return;
+  }
+
+  /* img uploader */
   const [imageSrc, setImageSrc] = useState();
   const [uploadData, setUploadData] = useState();
 
@@ -70,6 +114,11 @@ const form = () => {
 
       <div>my account </div>
       <p>walk: {_id}</p>
+
+      <AddRecord onAdd={addRecord} eventId={_id} />
+      
+      <button id="start" onClick={() => startTracking()}>Start</button>
+      <button id="stop" onClick={() => stopTracking()}>Stop</button>
      
       <div className="upload-container">
       <form

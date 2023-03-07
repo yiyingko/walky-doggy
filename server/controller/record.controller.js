@@ -10,7 +10,7 @@ exports.getEventRecords = (req,res)=>{
 };
 
 exports.postRecord = (req,res)=>{
-    //console.log("From POST:" + JSON.stringify(req.body));
+    console.log("From POST:" + JSON.stringify(req.body));
     recordModel.create(req.body).then(newRecord => res.status(201).json(newRecord));
 }
 

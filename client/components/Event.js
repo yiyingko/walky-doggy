@@ -1,8 +1,7 @@
 import moment from 'moment'
 import Link from 'next/link';
-import { useRouter } from 'next/router'
 import { FaTrash} from "react-icons/fa";
-import { useState, useEffect } from "react";
+
 
 
 const Event = ({ event, onDelete, formPath}) => {
