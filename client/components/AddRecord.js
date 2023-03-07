@@ -4,7 +4,6 @@ import { useState } from "react";
 const AddRecord = ({ onAdd, eventId }) => {
   const [pee, setPee] = useState(false);
   const [poo, setPoo] = useState(false);
-  //const [reminder,setReminder] = useState(false)
 
 
   const onSubmit = (e) => {
@@ -13,20 +12,11 @@ const AddRecord = ({ onAdd, eventId }) => {
     onAdd({ "eventId": eventId,pee,poo });
     setPee(false);
     setPoo(false);
-    //setReminder(false)
   };
 
   return (
    
      <form className="add-form" onSubmit={onSubmit}>
-
-
-      {/* <div className="form-control" type='checkbox' checked={reminder} value={reminder} onChange={(e)=>setReminder(e.currentTarget.checked)}>
-        <label>Set Reminder</label>
-        <input type="checkbox" />
-      </div>
-      <input type="submit" value='Submit' className="btn-block"/> */}
-
 
       <div className="form-title">
         <h1>POO/PEE RECORD</h1>

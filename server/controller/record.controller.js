@@ -5,7 +5,10 @@ exports.getEventRecords = (req,res)=>{
     recordModel.find({eventId: req.params["eventId"]})
         .exec((err,docs)=>{
                 console.log("records from db:" + JSON.stringify(docs));
-                res.status(200).json(docs);
+                const data = JSON.stringify(docs);
+                console.log(data,'data')
+                res.status(200)
+                res.send(data)
         });
 };
 
