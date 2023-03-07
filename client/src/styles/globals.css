@@ -11,7 +11,7 @@
 
 
 body {
-  background:#c6b885;
+  background: linear-gradient(to right,#dce0e2 0%, #838587 100%);
   color: #333;
   font-family: "Urbanist";
 }
@@ -24,8 +24,8 @@ a {
   margin: 0 auto;
 }
 nav {
-  margin: 10px auto 80px;
-  padding: 10px 0;
+  margin: 10px auto 20px;
+  padding: 5px 0;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -61,12 +61,12 @@ footer {
 .btn-block {
   display: block;
   width: 100%;
-  background: #000;
+  background: rgb(73, 72, 74);
   color: #fff;
   border: none;
   padding: 10px 20px;
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 25px;
 }
@@ -124,7 +124,6 @@ label{
   font-weight: bold;
   font-size: 28px;
   display: flex;
-  align-items: center;
   border-radius: 5px;
 }
 
@@ -135,27 +134,15 @@ label{
 
 .list-date,
 .list-venue{
-  font-size: 3px;
+  font-size: 4px;
   font-weight:lighter;
-  color: white;
+  color: rgb(73, 72, 74);
   text-align: center;
 }
 
-#first-event{
-  width: 600px;
-  height: 200px;
-  margin: 5px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 32px;
-  text-align: center;
-  background-color: #292928;
-  color: #f4f4f4;
-  border-radius: 20px;
-  
+.event-div{
+  display: flex;
+  justify-content: center;
 }
 
 .date-month{
@@ -216,7 +203,7 @@ h6{
   width: 70px;
   padding: 4px; 
   margin: 2px auto;
-  background: #292928;
+  background: rgb(73, 72, 74);
   border-radius: 10px;
   color: white;
   text-align: center;
@@ -226,7 +213,7 @@ h6{
 }
 
 .btn:hover {
-  background-color: #616261;
+  background-color: #a7aaa7;
   color: white;
 }
 
@@ -265,4 +252,166 @@ h6{
   padding: 0 2rem;
   margin: 0 auto;
 }  
+/**home page*/
+.pic-home{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.pichome{
+  border-radius: 15px;
+  border: 5px solid rgb(73, 72, 74);
+}
+
+/**my account home*/
+.myaccount-div{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+/**walker-record form*/
+
+.addform{
+  width: 400px;
+  height: 200px;
+  margin: 5px auto;
+  border: 4px solid rgb(73, 72, 74);
+  padding: 2px;
+  border-radius: 5px;
+}
+
+
+.submit-div{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
+}
+
+.submit-form-control{
+margin: 5px;
+align-content: center;
+
+}
+.submit-form-control label {
+  display: inline-block;
+  margin-right: 100px;
+  margin-left: 20px;
+  border-left: 20px;
+}
+
+.adjustfont{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.submit-form-control input{
+  width: 30px;
+  height: 30px;
+ }
+
+.submit-form-title{
+margin-bottom: 10px;
+margin-top: 5px;
+
+}
+
+.btn-record{
+  color: white;
+  font-size: 20px;
+  background-color: rgb(73, 72, 74);
+  padding: 12px;
+  border: 5px;
+  margin: 5px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.gpsbutton{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border: 4px solid rgb(73, 72, 74);
+  border-radius: 5px;
+  width: 400px;
+  height: 100px;
+}
+
+.gpslabel{
+  display: inline-block;
+  margin-right: 100px;
+  margin-left: 20px;
+  border-left: 20px;
+}
+
+.gpsouter{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
+}
+
+.upload-container-outer{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.upload-container{
+  border: 4px solid rgb(73, 72, 74);
+  border-radius: 5px;
+  width: 400px;
+  height: 100px;
+}
+
+.uploadlabel{
+  margin-bottom: 5px;
+}
+
+/**myaccount-formuser-form*/
+
+.record-div-outer{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.record-div{
+  font-size: 30px;
+}
+
+.record-label{
+  display: inline-block;
+  margin-right: 30px;
+  margin-left: 20px;
+  border-left: 20px;
+
+}
+
+.walk-path-outer{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.imgs-container{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+.map-header{
+  text-align: center;
+}
+
 

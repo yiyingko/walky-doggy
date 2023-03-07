@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Events from "../../../components/Events";
+import styles from "@/styles/Home.module.css";
 //import {EventContextProvider} from "../../../components/EventContextComponent";
 // import EventContext from "../../../components/EventContext";
 // import { EventContextProvider } from "../../../components/EventContextProvider";
@@ -38,7 +39,7 @@ const viewwalks = () => {
       <Head>
         <title>Walky Doggy | view walks</title>
       </Head>
-      <div>view my walks </div>
+      <h1 className={styles.title}>View Walk Histroy</h1>
       <Events events={events} onDelete={deleteEvent} formPath="/formuser/" />
      
     </> 

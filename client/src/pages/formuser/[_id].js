@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import styles from "@/styles/Home.module.css";
+import Image from "next/image";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -52,21 +54,26 @@ const formuser = () => {
   };
 
   //   //   /**display gps walkpath */
-  //   const coordinates = [
-  //     [-122.483696, 37.833818],
-  //     [-122.483482, 37.833174],
-  //     [-122.483396, 37.8327],
-  //     [-122.483568, 37.832056],
-  //     [-122.48404, 37.831141],
-  //     [-122.48404, 37.830497],
-  //     [-122.483482, 37.82992],
-  //     [-122.483568, 37.829548],
-  //     [-122.48507, 37.829446],
-  //     [-122.4861, 37.828802],
-  //     [-122.486958, 37.82931],
-  //     [-122.487001, 37.830802],
-  //   ];
-
+  // const coordinates = [
+  //   [-0.006940,51.479661],
+  //   [-0.0068414,51.479601],
+  //   [-0.007063,51.479270],
+  //   [-0.007278,51.478596],
+  //   [-0.006362,51.478533],
+  //   [-0.005235,51.478453],
+  //   [-0.003830,51.477852],
+  //   [-0.001695,51.476990],
+  //   [0.000011,51.476275],
+  //   [0.000593,51.476169],
+  //   [0.002692,51.476795],
+  //   [0.004257,51.477416],
+  //   [0.004622,51.479577],
+  //   [0.001167,51.480064],
+  //   [-0.001102,51.480077],
+  //   [-0.002100,51.481236],
+  //   [-0.003505,51.480725],
+  //   [-0.006667,51.479657],
+  // ];
   //   //  /**dont forget to put it to env!!!!!!!! */
 
   //   mapboxgl.accessToken =
@@ -115,19 +122,45 @@ const formuser = () => {
           rel="stylesheet" */}
         {/* /> */}
       </Head>
-      <div>view walk </div>
-      <label>POO: {records[0]?.poo.toString()} </label>
-      <label>PEE: {records[0]?.pee.toString()} </label>
+      <p>walk: {_id}</p>
+      <h1 className={styles.title}>Walk Record</h1>
 
-      <div id="map"></div>
+      <div className="record-div-outer">
+        <div className="record-div">
+          <label className="record-label">
+            POO: {records[0]?.poo.toString()}{" "}
+          </label>
+          <label className="record-label">
+            PEE: {records[0]?.pee.toString()}{" "}
+          </label>
+        </div>
+      </div>
 
-      {images.map((image) => {
-        return (
-          <li key={image._id}>
-            <img src={image.url} width="200" height="120" />
-          </li>
-        );
-      })}
+      <div className="walk-path-outer">
+        <div id="map"></div>
+        <div className="walk-path">
+          <div>
+            <h2 className="h2-walk">Walk Path</h2>
+          </div>
+          <Image src="/mock-gps-path.png" width="420" height="280" />
+        </div>
+      </div>
+
+      <div className="imgs-container">
+        
+
+        {images.map((image) => {
+          return (
+            <div>
+              <ul>
+                <li key={image._id}>
+                  <img src={image.url} width="237.6" height="336.8" />
+                </li>
+              </ul>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };

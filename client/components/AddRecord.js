@@ -18,11 +18,13 @@ const AddRecord = ({ onAdd, eventId }) => {
    
      <form className="add-form" onSubmit={onSubmit}>
 
-      <div className="form-title">
+      <div className="submit-form-title">
         <h1>POO/PEE RECORD</h1>
       </div>
-      <div className="form-control">
-        <label>PEE</label>
+      <div>
+      <div>
+      <div className="submit-form-control"> 
+        <label className="adjustfont">PEE</label>
         <input
           type="checkbox"
           name="pee"
@@ -30,8 +32,8 @@ const AddRecord = ({ onAdd, eventId }) => {
           onChange={(e) => setPee(e.target.checked)}
         />  
       </div>
-    
-      <div className="form-control">
+      <div>
+      <div className="submit-form-control">
         <label>POO</label>
         <input 
           type="checkbox"
@@ -40,7 +42,12 @@ const AddRecord = ({ onAdd, eventId }) => {
           onChange={(e) => setPoo(e.target.checked)}
         />
       </div>
-      <input type="submit" value="Submit" className="btn-block" />
+      </div>
+      </div>
+      <div className="submit-div">
+      <input type="submit" value="Submit" className="btn-record" />
+      </div>
+      </div>
     </form> 
     
   );

@@ -7,7 +7,7 @@ import { FaTrash} from "react-icons/fa";
 const Event = ({ event, onDelete, formPath}) => {
 
   return (
-    <div>
+    <div className='event-div'>
       <div id="event-list">
         <div className="left">
           <div className="event-day-month">{moment(event.date).format('Do[\n]MMM')}</div>

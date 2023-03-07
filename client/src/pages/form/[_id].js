@@ -111,15 +111,19 @@ const [record, setRecord] = useState(false);
       <Head>
         <title>Walky Doggy | walk form</title>
       </Head>
-
-      <div>my account </div>
-      <p>walk: {_id}</p>
-
+     <p>walk: {_id}</p>
+    <div className="addform">
       <AddRecord onAdd={addRecord} eventId={_id} />
-      
-      <button id="start" onClick={() => startTracking()}>Start</button>
-      <button id="stop" onClick={() => stopTracking()}>Stop</button>
-     
+    </div>
+    
+    <div className="gpsouter">
+    <div className="gpsbutton">
+      <div><label className="gpslabel">GPS TRACKING</label></div>
+      <button id="start" className="btn-record" onClick={() => startTracking()}>Start</button>
+      <button id="stop" className="btn-record"  onClick={() => stopTracking()}>Stop</button>
+    </div>
+    </div>
+     <div className="upload-container-outer">
       <div className="upload-container">
       <form
         className="upload-form"
@@ -127,7 +131,9 @@ const [record, setRecord] = useState(false);
         onChange={handleOnChange}
         onSubmit={handleOnSubmit}
       >
-        <label>Upload Photo</label>
+        <div>
+        <label className="uploadlabel">Upload Photo</label>
+        </div>
         <p>
           <input type="file" name="file" />
         </p>
@@ -146,6 +152,7 @@ const [record, setRecord] = useState(false);
           </code>
         )}
       </form>
+      </div>
       </div>
     </>
   );

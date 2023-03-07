@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link';
 import Events from '../../../components/Events';
 import { useState, useEffect } from "react";
+import styles from "@/styles/Home.module.css";
 // import React, { useState, createContext, useContext,useEffect } from "react";
 // const EventContext = createContext(null);
 
@@ -39,11 +40,8 @@ const walker = () => {
       <Head>
         <title>Walky Doggy | Walker</title>
       </Head>
-      <div>walker's event </div>
-      <Link href="/walkform">Walkform</Link>
-
-      <Events events={events} onDelete={deleteEvent} formPath="/form/" />
-      
+      <h1 className={styles.title}>Walks Schedule</h1>
+      <Events events={events} onDelete={deleteEvent} formPath="/form/" /> 
     </>
   );
 };

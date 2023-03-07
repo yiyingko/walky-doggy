@@ -1,11 +1,22 @@
 .title {
     color: #333;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     text-align: center;
+    font-size: 50px;
+    margin-top: auto
   }
   .text {
-    color: #777;
+    color: #3e3c3c;
     text-align: center;
+    font-size: 30px;
   }
 
-  
+  .button{
+  padding: 5px 10px;
+  font-size: 20px;
+  color: hsla(0, 0%, 90%, 1);
+  background: rgb(57, 56, 56);
+  border-radius: 10px;
+  box-shadow: 2px 2px 15px -5px #a7a7a7;
+  margin: 5px;
+  }
