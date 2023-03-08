@@ -48,7 +48,7 @@ const AddEvent = ({ onAdd }) => {
 
       </div>
       <div className="form-control">
-        <label>ADDRESS</label>
+        <label>PICK-UP LOCATION</label>
         <input 
           type="text"
           name="venue"

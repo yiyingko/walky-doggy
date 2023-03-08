@@ -13,31 +13,26 @@ const formuser = () => {
   const [images, setImages] = useState(() => []);
 
   /*getting record*/
-
-  // const getRecords = async () => {
-  //   const eventRecords = await fetchEventRecords().then((res)=> setRecords(res));
-  // setRecords(eventRecords);
-  // console.log("from server: " + JSON.stringify(eventRecords));
-  // console.log(eventRecords);
-  // };
-  const fetchEventRecords = async () => {
-    const res = await fetch(
-      `http://localhost:3001/records/64067493de0dec5a40643aa7`
-    )
-      .then((res) => res.json())
-      .then((res) => setRecords(res));
-  };
-
   useEffect(() => {
-    fetchEventRecords();
-    // getRecords().then(data => console.log("record: " + JSON.stringify(records)));
-    // getRecords();
+    const getRecords = async () => {
+      const eventRecords = await fetchEventRecords();
+      setRecords(eventRecords);
+    };
+    getRecords();
   }, []);
+
+  const fetchEventRecords = async () => {
+    const res = await fetch(`http://localhost:3001/records/${_id}`);
+    const data = await res.json();
+
+    return data;
+  };
 
   console.log(records, "records");
   console.log(records[0]?.poo);
 
   /* getting image*/
+
   useEffect(() => {
     const getImages = async () => {
       const eventImages = await fetchEventImages();
@@ -45,7 +40,7 @@ const formuser = () => {
     };
     getImages();
   }, []);
-
+  
   const fetchEventImages = async () => {
     const res = await fetch(`http://localhost:3001/images/${_id}`);
     const data = await res.json();
@@ -127,12 +122,8 @@ const formuser = () => {
 
       <div className="record-div-outer">
         <div className="record-div">
-          <label className="record-label">
-            POO: {records[0]?.poo.toString()}{" "}
-          </label>
-          <label className="record-label">
-            PEE: {records[0]?.pee.toString()}{" "}
-          </label>
+        <label>POO: {records[0]?.poo.toString()} </label>
+        <label>PEE: {records[0]?.pee.toString()} </label>
         </div>
       </div>
 
@@ -147,8 +138,6 @@ const formuser = () => {
       </div>
 
       <div className="imgs-container">
-        
-
         {images.map((image) => {
           return (
             <div>
