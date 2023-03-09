@@ -414,4 +414,10 @@ ul {
   text-align: center;
 }
 
+/**map*/
 
+.map-container {
+  width: 600px;
+  height: 400px;
+  }
+  

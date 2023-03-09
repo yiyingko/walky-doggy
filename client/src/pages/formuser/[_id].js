@@ -1,16 +1,26 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { useState, useEffect } from "react";
+//import { useState, useEffect,useRef } from "react";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
-import mapboxgl from "mapbox-gl";
+//import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import React, { useRef, useEffect, useState } from 'react';
+import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import { env } from "eslint-config-next";
+
+//mapboxgl.accessToken = process.env.local.MAPBOX_KEY;
+
+
+
 
 const formuser = () => {
   const router = useRouter();
   const { _id } = router.query;
   const [records, setRecords] = useState([]);
   const [images, setImages] = useState(() => []);
+
+  
 
   /*getting record*/
   useEffect(() => {
@@ -27,9 +37,6 @@ const formuser = () => {
 
     return data;
   };
-
-  console.log(records, "records");
-  console.log(records[0]?.poo);
 
   /* getting image*/
 
@@ -48,7 +55,7 @@ const formuser = () => {
     return data;
   };
 
-  //   //   /**display gps walkpath */
+    /**display gps walkpath */
   // const coordinates = [
   //   [-0.006940,51.479661],
   //   [-0.0068414,51.479601],
@@ -69,43 +76,62 @@ const formuser = () => {
   //   [-0.003505,51.480725],
   //   [-0.006667,51.479657],
   // ];
-  //   //  /**dont forget to put it to env!!!!!!!! */
+    //  /**dont forget to put it to env!!!!!!!! */
 
-  //   mapboxgl.accessToken =
-  //     "pk.eyJ1IjoieWl5aW5na28iLCJhIjoiY2xld3h3aGJ5MGl6ZDN5czhzaW5pb3RrZyJ9.rWPT9Mi9zowm8bMrTx0ktg";
-  //   const map = new mapboxgl.Map({
-  //     container: "map",
-  //     style: "mapbox://styles/mapbox/streets-v12",
-  //     center: [-122.483568, 37.829548],
-  //     zoom: 14,
-  //   });
+    
 
-  //   map.on("load", () => {
-  //     map.addSource("route", {
-  //       type: "geojson",
-  //       data: {
-  //         type: "Feature",
-  //         properties: {},
-  //         geometry: {
-  //           type: "LineString",
-  //           coordinates: coordinates,
-  //         },
-  //       },
-  //     });
-  //     map.addLayer({
-  //       id: "route",
-  //       type: "line",
-  //       source: "route",
-  //       layout: {
-  //         "line-join": "round",
-  //         "line-cap": "round",
-  //       },
-  //       paint: {
-  //         "line-color": "#888",
-  //         "line-width": 8,
-  //       },
-  //     });
-  //   });
+    const mapContainer = useRef(null);
+    const map = useRef(null);
+    const [lng, setLng] = useState(-70.9);
+    const [lat, setLat] = useState(42.35);
+    const [zoom, setZoom] = useState(9);
+
+
+    useEffect(() => {
+      if (map.current) return; // initialize map only once
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [lng, lat],
+        zoom: zoom
+      });
+
+    });
+
+
+    // const map = new mapboxgl.Map({
+    //   container: "map",
+    //   style: "mapbox://styles/mapbox/streets-v12",
+    //   center: [-122.483568, 37.829548],
+    //   zoom: 14,
+    // });
+
+    // map.on("load", () => {
+    //   map.addSource("route", {
+    //     type: "geojson",
+    //     data: {
+    //       type: "Feature",
+    //       properties: {},
+    //       geometry: {
+    //         type: "LineString",
+    //         coordinates: coordinates,
+    //       },
+    //     },
+    //   });
+    //   map.addLayer({
+    //     id: "route",
+    //     type: "line",
+    //     source: "route",
+    //     layout: {
+    //       "line-join": "round",
+    //       "line-cap": "round",
+    //     },
+    //     paint: {
+    //       "line-color": "#888",
+    //       "line-width": 8,
+    //     },
+    //   });
+    // });
 
   return (
     <>
@@ -128,12 +154,21 @@ const formuser = () => {
       </div>
 
       <div className="walk-path-outer">
-        <div id="map"></div>
+        {/* <div id="map"></div> */}
         <div className="walk-path">
+        <div>
+              <div ref={mapContainer} className="map-container" />
+          </div>
+
           <div>
             <h2 className="h2-walk">Walk Path</h2>
+            <div>
+              <div ref={mapContainer} className="map-container" />
           </div>
-          <Image src="/mock-gps-path.png" width="420" height="280" />
+
+
+          </div>
+          {/* <Image src="/mock-gps-path.png" width="420" height="280" /> */}
         </div>
       </div>
 
