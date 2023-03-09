@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useState ,useEffect} from "react";
 import AddRecord from "../../../components/AddRecord";
 
+
 const form = () => {
   const router = useRouter();
   const { _id } = router.query;
@@ -45,6 +46,7 @@ const form = () => {
 
     return data;
   };
+  
 
   const addLocation = async (location) => {
     fetch("http://localhost:3001/locations", {
@@ -112,8 +114,9 @@ const form = () => {
 
     formData.append("upload_preset", "walk-history");
 
-    const data = await fetch(
-      "https://api.cloudinary.com/v1_1/dk8ihjq0m/image/upload",
+    const data = await fetch( 
+     // `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
+      
 
       {
         method: "POST",

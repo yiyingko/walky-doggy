@@ -4,12 +4,10 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 //import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+//import "./mapbox-gl/dist/mapbox-gl.css";
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import { env } from "eslint-config-next";
-
-//mapboxgl.accessToken = process.env.local.MAPBOX_KEY;
+//import { env } from "eslint-config-next";
 
 
 
@@ -55,6 +53,27 @@ const formuser = () => {
     return data;
   };
 
+/**fetch location */
+const [coordinates, setCoordinates] = useState({});
+
+useEffect(() => {
+  const getCoordinates = async () => {
+    const coordinatesServer = await fetchCoordinates();
+    setCoordinates(coordinatesServer);
+  };
+  getCoordinates();
+}, []);
+
+
+const fetchCoordinates = async () => {
+console.log("before fetch coords: " + _id);
+  const res = await fetch(`http://localhost:3001/locations/${_id}`);
+  const data = await res.json();
+console.log("coordinates " + JSON.stringify(data))
+  return data;
+};
+
+
     /**display gps walkpath */
   // const coordinates = [
   //   [-0.006940,51.479661],
@@ -76,15 +95,12 @@ const formuser = () => {
   //   [-0.003505,51.480725],
   //   [-0.006667,51.479657],
   // ];
-    //  /**dont forget to put it to env!!!!!!!! */
-
-    
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
+    const [lng, setLng] = useState(0);
+    const [lat, setLat] = useState(51.4774);
+    const [zoom, setZoom] = useState(14);
 
 
     useEffect(() => {
@@ -96,52 +112,39 @@ const formuser = () => {
         zoom: zoom
       });
 
+
+    map.current.on("load", () => {
+      map.current.addSource("route", {
+        type: "geojson",
+        data: {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "LineString",
+            coordinates: coordinates,
+          },
+        },
+      });
+      map.current.addLayer({
+        id: "route",
+        type: "line",
+        source: "route",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#888",
+          "line-width": 8,
+        },
+      });
     });
-
-
-    // const map = new mapboxgl.Map({
-    //   container: "map",
-    //   style: "mapbox://styles/mapbox/streets-v12",
-    //   center: [-122.483568, 37.829548],
-    //   zoom: 14,
-    // });
-
-    // map.on("load", () => {
-    //   map.addSource("route", {
-    //     type: "geojson",
-    //     data: {
-    //       type: "Feature",
-    //       properties: {},
-    //       geometry: {
-    //         type: "LineString",
-    //         coordinates: coordinates,
-    //       },
-    //     },
-    //   });
-    //   map.addLayer({
-    //     id: "route",
-    //     type: "line",
-    //     source: "route",
-    //     layout: {
-    //       "line-join": "round",
-    //       "line-cap": "round",
-    //     },
-    //     paint: {
-    //       "line-color": "#888",
-    //       "line-width": 8,
-    //     },
-    //   });
-    // });
+  });
 
   return (
     <>
       <Head>
         <title>Walky Doggy | view walk</title>
-        {/* <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css"
-          rel="stylesheet" */}
-        {/* /> */}
       </Head>
       <p>walk: {_id}</p>
       <h1 className={styles.title}>Walk Record</h1>
@@ -154,11 +157,9 @@ const formuser = () => {
       </div>
 
       <div className="walk-path-outer">
-        {/* <div id="map"></div> */}
+        
         <div className="walk-path">
-        <div>
-              <div ref={mapContainer} className="map-container" />
-          </div>
+        
 
           <div>
             <h2 className="h2-walk">Walk Path</h2>

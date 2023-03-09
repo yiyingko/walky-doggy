@@ -1,10 +1,10 @@
 const locationModel = require('../models/location');
 
 exports.getEventLocations = (req,res)=>{
-    //console.log("Request.body: " + JSON.stringify(req.params));
+    console.log("Request.body EventLocations: " + JSON.stringify(req.params));
     locationModel.find({eventId: req.params["eventId"]})
         .exec((err,docs)=>{
-                //console.log("Images from db:" + JSON.stringify(docs));
+                console.log("Locations from db:" + JSON.stringify(docs));
                 res.status(200).json(docs);
         });
 };
