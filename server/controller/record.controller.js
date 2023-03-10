@@ -1,7 +1,6 @@
 const recordModel = require('../models/record');
 
 exports.getEventRecords = (req,res)=>{
-    //console.log("Request.body: " + JSON.stringify(req.body));
     recordModel.find({eventId: req.params["eventId"]})
         .exec((err,docs)=>{
                 console.log("records from db:" + JSON.stringify(docs));
