@@ -1,20 +1,22 @@
 const imageModel = require('../models/image');
 
-exports.getEventImages = (req,res)=>{
-    //console.log("Request.body: " + JSON.stringify(req.params));
-    imageModel.find({eventId: req.params["eventId"]})
-        .exec((err,docs)=>{
-                //console.log("Images from db:" + JSON.stringify(docs));
-                res.status(200).json(docs);
-        });
+exports.getEventImages = (req, res) => {
+  imageModel.find({ eventId: req.params['eventId'] }).exec((err, docs) => {
+    res.status(200).json(docs);
+  });
 };
 
-exports.postImage = (req,res)=>{
-    //console.log("From POST:" + JSON.stringify(req.body));
-    imageModel.create(req.body).then(newImage => res.status(201).json(newImage));
-}
+exports.postImage = (req, res) => {
+  try {
+    imageModel
+      .create(req.body)
+      .then((newImage) => res.status(201).json(newImage));
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+  }
+};
 
-exports.deleteImage = (req,res)=>{
-    //console.log("From DELETE:" + JSON.stringify(req.params));
-    imageModel.deleteOne({_id: req.params["id"]}).then(res.json(req.params))
-}
+exports.deleteImage = (req, res) => {
+  imageModel.deleteOne({ _id: req.params['id'] }).then(res.json(req.params));
+};
