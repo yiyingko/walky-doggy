@@ -15,5 +15,5 @@ exports.postRecord = (req,res)=>{
 
 exports.deleteRecord = (req,res)=>{
     console.log("From DELETE:" + JSON.stringify(req.params));
-    recordModel.deleteOne({_id: req.params["id"]}).then(res.json(req.params))
+    recordModel.deleteOne({eventId: req.params["id"]}).then(res.json(req.params))
 }

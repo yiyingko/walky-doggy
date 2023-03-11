@@ -1,6 +1,6 @@
 const { describe, expect, beforeAll, afterAll } = require("@jest/globals");
 const request = require('supertest');
-const locationModel = require('../models/event');
+const locationModel = require('../models/location');
 const { default: mongoose } = require("mongoose");
 
 const url = 'http://localhost:3001/locations/';

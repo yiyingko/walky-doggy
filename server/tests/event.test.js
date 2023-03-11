@@ -40,6 +40,11 @@ describe('Event tests:', () => {
       const res = await request(url).post('/')
       .send(eventTest1);
       expect(res.status).toBe(201);
+      expect(res.header['content-type']).toEqual(expect.stringContaining('json'));
+    })
+    it('Should post the event on the DB:', async () => {
+      const res = await eventModel.find({title: eventTest1.title});
+      expect(res).toBeTruthy();
     })
   })
 
@@ -75,7 +80,7 @@ describe('Event tests:', () => {
       const res = await request(url).get('/');
       const events = res.body.map((event) => event._id);
       const id = events[0];
-      const response = await request(url).delete(`${id}`);
+      const response = await request(url).delete(id);
       const deletedEvent = await eventModel.findById(id);
       expect(deletedEvent).toBeNull();
       expect(response.status).toBe(200);
