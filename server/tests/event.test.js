@@ -1,8 +1,6 @@
-const { describe, expect, test, beforeAll, afterAll } = require("@jest/globals");
-const {MongoClient} = require('mongodb');
+const { describe, expect, beforeAll, afterAll } = require("@jest/globals");
 const request = require('supertest');
 const eventModel = require('../models/event');
-const waitOn = require('wait-on');
 const { default: mongoose } = require("mongoose");
 
 const url = 'http://localhost:3001/events/';
@@ -12,10 +10,6 @@ const eventTest1 = {
   date: '2023-03-12T09:00:00.000Z',
   venue: 'Carrer X'
 }
-
-
-
-
 
 describe('Event tests:', () => {
   beforeAll(async () => {
@@ -81,10 +75,8 @@ describe('Event tests:', () => {
       const res = await request(url).get('/');
       const events = res.body.map((event) => event._id);
       const id = events[0];
-      console.log(id);
       const response = await request(url).delete(`${id}`);
       const deletedEvent = await eventModel.findById(id);
-      console.log(deletedEvent);
       expect(deletedEvent).toBeNull();
       expect(response.status).toBe(200);
     })
