@@ -1,6 +1,19 @@
 import Event from './Event';
 
-const Events = ({ events, onDelete, formPath }) => {
+type EventProps = {
+  _id: string;
+  title: string;
+  date: Date;
+  venue: string;
+};
+
+type EventsProps = {
+  events: EventProps[];
+  onDelete: (id: string) => void;
+  formPath: string;
+};
+
+const Events = ({ events, onDelete, formPath }: EventsProps) => {
   //const events = useContext(EventContext)
   return (
     <div id='list'>
@@ -10,7 +23,6 @@ const Events = ({ events, onDelete, formPath }) => {
             <Event
               key={index}
               event={event}
-              events={events}
               onDelete={onDelete}
               formPath={formPath}
             />
