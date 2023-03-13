@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 
 describe('<Footer />', () => {
-  it('renders', () => {
+  it('Check footer text', () => {
     cy.mount(<Footer />);
     cy.get('footer').should(
       'have.text',
