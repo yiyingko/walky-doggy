@@ -9,7 +9,7 @@ type EventProps = {
 
 type EventsProps = {
   events: EventProps[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
   formPath: string;
 };
 
