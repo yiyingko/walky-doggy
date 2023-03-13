@@ -3,6 +3,12 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+type EventProps = {
+  _id: string;
+  title: string;
+  date: Date;
+  venue: string;
+};
 
 const AddEvent = ({ onAdd }) => {
   const [title, setTitle] = useState<string>("");
