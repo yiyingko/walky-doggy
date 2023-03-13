@@ -5,9 +5,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
 const AddEvent = ({ onAdd }) => {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [venue, setVenue] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const [venue, setVenue] = useState<string>("");
 
 
   const onSubmit = (e) => {
