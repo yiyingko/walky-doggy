@@ -20,8 +20,6 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
   const [venue, setVenue] = useState<string>('');
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
     if (date !== null) {
       onAdd({ title, date, venue });
       setTitle('');
@@ -35,7 +33,7 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
   };
 
   return (
-    <form className='add-form' onSubmit={onSubmit}>
+    <form className='add-form' action="/walker" onSubmit={onSubmit}>
       <div className='form-title'>
         <h1>Book a Walk</h1>
       </div>
@@ -73,7 +71,6 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
           onChange={(e) => setVenue(e.target.value)}
         />
       </div>
-
       <input type='submit' value='BOOK' className='btn-block' />
     </form>
   );

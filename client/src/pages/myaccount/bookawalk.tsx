@@ -9,7 +9,7 @@ type EventProps = {
   venue: string;
 };
 
-const bookawalk = () => {
+const Bookawalk = () => {
   const [events, setEvents] = useState<EventProps[]>()
 
   const fetchEvents = async () => {
@@ -41,4 +41,4 @@ const bookawalk = () => {
   )
 }
 
-export default bookawalk;
+export default Bookawalk;

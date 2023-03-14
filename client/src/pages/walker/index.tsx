@@ -1,16 +1,17 @@
 import Head from 'next/head';
-import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Events from '../../../components/Events';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/Home.module.css';
 
 type EventProps = {
-  _id: string;
+  _id?: string;
   title: string;
   date: Date;
   venue: string;
 };
 
-const Viewwalks = () => {
+const Walker = () => {
   const [events, setEvents] = useState<EventProps[]>([]);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const Viewwalks = () => {
   }, []);
 
   const fetchEvents = async () => {
-    const res = await fetch('http://localhost:3001/events/past');
+    const res = await fetch('http://localhost:3001/events');
     const data = await res.json();
 
     return data;
@@ -39,12 +40,12 @@ const Viewwalks = () => {
   return (
     <>
       <Head>
-        <title>Walky Doggy | view walks</title>
+        <title>Walky Doggy | Walker</title>
       </Head>
-      <h1 className={styles.title}>View Walk Histroy</h1>
-      <Events events={events} onDelete={deleteEvent} formPath='/formuser/' />
+      <h1 className={styles.title}>Walks Schedule</h1>
+      <Events events={events} onDelete={deleteEvent} formPath='/form/' />
     </>
   );
 };
 
-export default Viewwalks;
+export default Walker;
