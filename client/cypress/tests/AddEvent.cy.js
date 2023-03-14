@@ -1,5 +1,5 @@
 import React from 'react'
-import AddEvent from './AddEvent'
+import AddEvent from '../../components/AddEvent'
 
 describe('<AddEvent />', () => {
   beforeEach(() => {

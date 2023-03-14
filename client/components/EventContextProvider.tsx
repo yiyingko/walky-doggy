@@ -3,9 +3,30 @@ import React, { createContext, useState ,useEffect} from "react";
 
 export const EventContext = createContext(null);
 
+type EventProps = {
+  _id?: string;
+  title: string;
+  date: Date;
+  venue: string;
+};
 
-export const EventContextProvider = ({ children }) => {
-    const [events, setEvents] = useState(() =>[]);
+type EventContextType = {
+  events: EventProps[];
+  setEvents: React.Dispatch<React.SetStateAction<EventProps[]>>;
+  useEffect: typeof useEffect;
+  fetchEvents: () => Promise<EventProps[]>;
+  deleteEvent: (id: string) => Promise<void>;
+  addEvent: (event: EventProps) => Promise<void>;
+}
+
+
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+
+export const EventContextProvider = ({ children } : LayoutProps) => {
+    const [events, setEvents] = useState<EventProps[]>(() =>[]);
 
     useEffect(() => {
       const getEvents = async () => {
@@ -23,7 +44,7 @@ export const EventContextProvider = ({ children }) => {
         return data;
       };
     
-      const deleteEvent = async (_id) => {
+      const deleteEvent = async (_id: string) => {
         await fetch(`http://localhost:3001/events/${_id}`, {
           method: "DELETE",
         }).then(()=> {
@@ -32,7 +53,7 @@ export const EventContextProvider = ({ children }) => {
         });
       }
 
-      const addEvent = async (event) => {
+      const addEvent = async (event: EventProps) => {
         fetch("http://localhost:3001/events", {
           method: "POST",
           headers: {
@@ -44,7 +65,7 @@ export const EventContextProvider = ({ children }) => {
       };    
 
   
-    const value = {
+    const value: EventContextType | null = {
       events, 
       setEvents,
       useEffect,
@@ -55,6 +76,8 @@ export const EventContextProvider = ({ children }) => {
   
     return (
       <EventContext.Provider value={{events,setEvents,useEffect,fetchEvents,deleteEvent,addEvent}}> 
+      
+
     
       {children} 
       

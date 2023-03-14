@@ -2,12 +2,16 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import Events from "../../../components/Events";
 import styles from "@/styles/Home.module.css";
-//import {EventContextProvider} from "../../../components/EventContextComponent";
-// import EventContext from "../../../components/EventContext";
-// import { EventContextProvider } from "../../../components/EventContextProvider";
+
+type EventProps = {
+  _id: string;
+  title: string;
+  date: Date;
+  venue: string;
+};
 
 const viewwalks = () => {
-  const [events, setEvents] = useState(() =>[]);
+  const [events, setEvents] = useState<EventProps[] | null>(null);
   
   useEffect(() => {
     const getEvents = async () => {
@@ -25,7 +29,7 @@ const viewwalks = () => {
     return data;
   };
  
-  const deleteEvent = async (_id) => {
+  const deleteEvent = async (_id: string) => {
     await fetch(`http://localhost:3001/events/${_id}`, {
       method: "DELETE",
     }).then(()=> {

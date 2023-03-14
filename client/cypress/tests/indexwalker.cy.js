@@ -1,9 +1,9 @@
 import React from 'react'
-import form from './[_id]'
+import walker from '../../src/pages/walker/index'
 
-describe('<form />', () => {
+describe('<walker />', () => {
   it('renders', () => {
     // see: https://on.cypress.io/mounting-react
-    cy.mount(<form />)
+    cy.mount(<walker />)
   })
 })

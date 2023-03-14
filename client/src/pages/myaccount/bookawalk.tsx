@@ -2,9 +2,15 @@ import Head from "next/head";
 import AddEvent from "../../../components/AddEvent";
 import { useState, useEffect } from "react";
 
+type EventProps = {
+  _id: string;
+  title: string;
+  date: Date;
+  venue: string;
+};
 
 const bookawalk = () => {
-  const [events, setEvents] = useState(() =>[]);
+  const [events, setEvents] = useState<EventProps[]>()
 
   const fetchEvents = async () => {
     const res = await fetch("http://localhost:3001/events");
@@ -13,7 +19,7 @@ const bookawalk = () => {
     return data;
   };
   
-  const addEvent = async (event) => {
+  const addEvent = async (event: EventProps) => {
     fetch("http://localhost:3001/events", {
       method: "POST",
       headers: {
