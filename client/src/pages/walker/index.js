@@ -3,11 +3,9 @@ import Link from 'next/link';
 import Events from '../../../components/Events';
 import { useState, useEffect } from "react";
 import styles from "@/styles/Home.module.css";
-// import React, { useState, createContext, useContext,useEffect } from "react";
-// const EventContext = createContext(null);
+
 
 const walker = () => {
-  //const { events, setEvents,useEffect,fetchEvents,deleteEvent } = useContext(EventContext);
     const [events, setEvents] = useState(() =>[]);
    
     useEffect(() => {

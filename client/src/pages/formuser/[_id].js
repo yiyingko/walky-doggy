@@ -1,13 +1,10 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-//import { useState, useEffect,useRef } from "react";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
-//import mapboxgl from "mapbox-gl";
-//import "./mapbox-gl/dist/mapbox-gl.css";
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-//import { env } from "eslint-config-next";
+import mapboxgl from '!mapbox-gl'; 
+
 
 
 

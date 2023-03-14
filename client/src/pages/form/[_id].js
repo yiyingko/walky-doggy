@@ -8,7 +8,7 @@ const form = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-  /**record */
+
   const [record, setRecord] = useState(false);
 
   const fetchRecord = async () => {
@@ -28,14 +28,12 @@ const form = () => {
     }).then((result) => console.log("savedRecords: " + JSON.stringify(result)));
   };
 
-  /* collect geo location data*/
   const [location, setLocation] = useState({});
 
   useEffect(() => {
     console.log("useEffect Location: " + JSON.stringify(location));
     const postLocation = async () => {
       const locationServer = await addLocation(location);
-      //setLocation(eventsServer);
     };
     if(JSON.stringify(location) !== "{}") postLocation();
   }, [location]);
@@ -60,7 +58,7 @@ const form = () => {
     );
   };
 
-  //const coordinates =[];
+
   const startTracking = () => {
     navigator.geolocation.watchPosition(
       (data) => {
@@ -69,8 +67,6 @@ const form = () => {
           eventId: _id,
           coordinates: [data.coords.longitude, data.coords.latitude],
         });
-        // coordinates.push([data.coords.longitude,data.coords.latitude]);
-        // window.localStorage.setItem("coordinates",JSON.stringify(coordinates));
       },
       (error) => console.log(error),
       {

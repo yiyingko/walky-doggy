@@ -1,5 +1,5 @@
 import React from 'react'
-import walker from './index'
+import walker from '../../src/pages/walker/index'
 
 describe('<walker />', () => {
   it('renders', () => {
