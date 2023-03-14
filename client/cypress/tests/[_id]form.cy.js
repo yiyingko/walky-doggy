@@ -1,5 +1,5 @@
 import React from 'react'
-import form from './[_id]'
+import form from '../../src/pages/form/[_id]'
 
 describe('<form />', () => {
   it('renders', () => {
