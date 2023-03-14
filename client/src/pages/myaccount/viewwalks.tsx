@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Events from "../../../components/Events";
-import styles from "@/styles/Home.module.css";
+import styles from "../../styles/Home.module.css"
 
 type EventProps = {
   _id: string;

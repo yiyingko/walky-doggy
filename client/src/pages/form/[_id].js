@@ -8,9 +8,6 @@ const form = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-
-  const [record, setRecord] = useState(false);
-
   const fetchRecord = async () => {
     const res = await fetch(`http://localhost:3001/records/${_id}`);
     const data = await res.json();

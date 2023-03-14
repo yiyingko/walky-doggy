@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import styles from "../../styles/Home.module.css"
 import Image from "next/image";
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; 
@@ -69,29 +69,6 @@ console.log("before fetch coords: " + _id);
 console.log("coordinates " + JSON.stringify(data))
   return data;
 };
-
-
-    /**display gps walkpath */
-  // const coordinates = [
-  //   [-0.006940,51.479661],
-  //   [-0.0068414,51.479601],
-  //   [-0.007063,51.479270],
-  //   [-0.007278,51.478596],
-  //   [-0.006362,51.478533],
-  //   [-0.005235,51.478453],
-  //   [-0.003830,51.477852],
-  //   [-0.001695,51.476990],
-  //   [0.000011,51.476275],
-  //   [0.000593,51.476169],
-  //   [0.002692,51.476795],
-  //   [0.004257,51.477416],
-  //   [0.004622,51.479577],
-  //   [0.001167,51.480064],
-  //   [-0.001102,51.480077],
-  //   [-0.002100,51.481236],
-  //   [-0.003505,51.480725],
-  //   [-0.006667,51.479657],
-  // ];
 
     const mapContainer = useRef(null);
     const map = useRef(null);
