@@ -10,7 +10,7 @@ type EventProps = {
   venue: string;
 };
 
-const viewwalks = () => {
+const Viewwalks = () => {
   const [events, setEvents] = useState<EventProps[] | null>(null);
   
   useEffect(() => {
@@ -50,5 +50,5 @@ const viewwalks = () => {
     )
   }
   
-  export default viewwalks
+  export default Viewwalks
 

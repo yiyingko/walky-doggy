@@ -9,7 +9,7 @@ import mapboxgl from '!mapbox-gl';
 
 
 
-const formuser = () => {
+const Formuser = () => {
   const router = useRouter();
   const { _id } = router.query;
   const [records, setRecords] = useState([]);
@@ -29,7 +29,6 @@ const formuser = () => {
   const fetchEventRecords = async () => {
     const res = await fetch(`http://localhost:3001/records/${_id}`);
     const data = await res.json();
-
     return data;
   };
 
@@ -46,7 +45,6 @@ const formuser = () => {
   const fetchEventImages = async () => {
     const res = await fetch(`http://localhost:3001/images/${_id}`);
     const data = await res.json();
-
     return data;
   };
 
@@ -77,43 +75,43 @@ console.log("coordinates " + JSON.stringify(data))
     const [zoom, setZoom] = useState(14);
 
 
-    useEffect(() => {
-      if (map.current) return; // initialize map only once
-      map.current = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [lng, lat],
-        zoom: zoom
-      });
+  //   useEffect(() => {
+  //     if (map.current) return; // initialize map only once
+  //     map.current = new mapboxgl.Map({
+  //       container: mapContainer.current,
+  //       style: 'mapbox://styles/mapbox/streets-v12',
+  //       center: [lng, lat],
+  //       zoom: zoom
+  //     });
 
 
-    map.current.on("load", () => {
-      map.current.addSource("route", {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "LineString",
-            coordinates: coordinates,
-          },
-        },
-      });
-      map.current.addLayer({
-        id: "route",
-        type: "line",
-        source: "route",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
-        paint: {
-          "line-color": "#888",
-          "line-width": 8,
-        },
-      });
-    });
-  });
+  //   map.current.on("load", () => {
+  //     map.current.addSource("route", {
+  //       type: "geojson",
+  //       data: {
+  //         type: "Feature",
+  //         properties: {},
+  //         geometry: {
+  //           type: "LineString",
+  //           coordinates: coordinates,
+  //         },
+  //       },
+  //     });
+  //     map.current.addLayer({
+  //       id: "route",
+  //       type: "line",
+  //       source: "route",
+  //       layout: {
+  //         "line-join": "round",
+  //         "line-cap": "round",
+  //       },
+  //       paint: {
+  //         "line-color": "#888",
+  //         "line-width": 8,
+  //       },
+  //     });
+  //   });
+  // });
 
   return (
     <>
@@ -164,4 +162,4 @@ console.log("coordinates " + JSON.stringify(data))
   );
 };
 
-export default formuser;
+export default Formuser;

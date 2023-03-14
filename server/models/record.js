@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const recordSchema = new Schema({
-  eventId : String,
+  eventId : {
+    type: String,
+    unique: true
+  },
   pee: Boolean,
   poo: Boolean
 });
