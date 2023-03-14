@@ -25,22 +25,24 @@ const AddRecord = ({ onAdd, eventId }: AddRecordProps) => {
       <div>
         <div>
           <div className='submit-form-control'>
-            <label className='adjustfont'>PEE</label>
+            <label className='adjustfont' htmlFor="peecheck">PEE</label>
             <input
               type='checkbox'
               name='pee'
               checked={pee}
               onChange={(e) => setPee(e.target.checked)}
+              id='peecheck'
             />
           </div>
           <div>
             <div className='submit-form-control'>
-              <label>POO</label>
+              <label htmlFor='poocheck'>POO</label>
               <input
                 type='checkbox'
                 name='poo'
                 checked={poo}
                 onChange={(e) => setPoo(e.target.checked)}
+                id='poocheck'
               />
             </div>
           </div>

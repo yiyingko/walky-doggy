@@ -14,7 +14,6 @@ type EventsProps = {
 };
 
 const Events = ({ events, onDelete, formPath }: EventsProps) => {
-  //const events = useContext(EventContext)
   return (
     <div id='list'>
       {events &&
