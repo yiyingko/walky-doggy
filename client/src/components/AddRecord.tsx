@@ -21,7 +21,6 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
       setImage(onLoadEvent.target?.result as string);
       setUploadData(null);
     };
-
     reader.readAsDataURL(changeEvent.target.files[0]);
   };
 
@@ -41,6 +40,7 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
         <div className='checkbox-pp submit-form-control'>
           <label className='adjustfont'>PEE</label>
           <input
+            className='checkbox'
             type='checkbox'
             name='pee'
             checked={pee}
@@ -50,6 +50,7 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
         <div className='checkbox-pp submit-form-control'>
           <label className='adjustfont'>POO</label>
           <input
+            className='checkbox'
             type='checkbox'
             name='poo'
             checked={poo}
