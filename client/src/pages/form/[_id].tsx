@@ -17,8 +17,11 @@ const Form = () => {
   const router = useRouter();
   const { _id } = router.query as { _id: string };
 
+<<<<<<< Updated upstream
   const addRecord = ApiService.addRecord;
 
+=======
+>>>>>>> Stashed changes
   const [location, setLocation] = useState<Location>({
     eventId: '',
     coordinates: [0, 0],
@@ -47,9 +50,13 @@ const Form = () => {
 
   /* img uploader */
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+<<<<<<< Updated upstream
   const [uploadData, setUploadData] = useState<ImageData | null>(
     null
   );
+=======
+  const [uploadData, setUploadData] = useState<ImageData | null>(null);
+>>>>>>> Stashed changes
 
   const handleOnChange = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -77,8 +84,13 @@ const Form = () => {
         <title>Walky Doggy | walk form</title>
       </Head>
       <p>walk: {_id}</p>
+<<<<<<< Updated upstream
       <div className='addform' data-testid="add-record">
         <AddRecord onAdd={addRecord} eventId={_id} />
+=======
+      <div className='addform' data-testid='add-record'>
+        <AddRecord eventId={_id} />
+>>>>>>> Stashed changes
       </div>
 
       {/* <div className='gpsouter'>
@@ -106,6 +118,7 @@ const Form = () => {
         <div className='upload-container'>
           <form className='upload-form' method='post'>
             <div>
+<<<<<<< Updated upstream
               <label className='uploadlabel' htmlFor='upimage'>Upload Photo</label>
             </div>
             <div>
@@ -113,6 +126,18 @@ const Form = () => {
                 <input type='file' name='file' id='upimage'/>
               </p>
             </div>
+=======
+              <label className='uploadlabel' htmlFor='upimage'>
+                Upload Photo
+              </label>
+            </div>
+            <div>
+              <p>
+                <input type='file' name='file' id='upimage' />
+              </p>
+            </div>
+
+>>>>>>> Stashed changes
             <img src={imageSrc} />
 
             {imageSrc && !uploadData && (

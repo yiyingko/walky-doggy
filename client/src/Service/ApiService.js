@@ -29,7 +29,11 @@ export const getEventsPast = async () => {
 
 export const deleteEvent = async (id) => {
   try {
+<<<<<<< Updated upstream
     const response = await fetch(`${BASE_URL}/events/${id}`, {
+=======
+    const response = await fetch(`${BASE_URL}/events/${event._id}`, {
+>>>>>>> Stashed changes
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +56,11 @@ export const deleteEvent = async (id) => {
 
 export const postRecord = async (record) => {
   try {
+<<<<<<< Updated upstream
     const response = await fetch(`${BASE_URL}/records/${record._id}`, {
+=======
+    const response = await fetch(`${BASE_URL}/records/`, {
+>>>>>>> Stashed changes
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,8 +73,8 @@ export const postRecord = async (record) => {
   }
 };
 
-export const getRecord = async (record) => {
-  const response = await fetch(`${BASE_URL}/records/${record._id}`);
+export const getRecord = async (id) => {
+  const response = await fetch(`${BASE_URL}/records/${id}`);
   return response.json();
 };
 
@@ -91,6 +99,7 @@ export const getImage = async (image) => {
   const response = await fetch(`${BASE_URL}/images/${image.eventId}`);
   return response.json();
 };
+<<<<<<< Updated upstream
 
 //location api:
 
@@ -115,3 +124,5 @@ export const getCoordinates = async (id) => {
   const data = await res.json();
   return data;
 };
+=======
+>>>>>>> Stashed changes
