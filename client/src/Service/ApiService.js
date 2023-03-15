@@ -72,7 +72,7 @@ export const getRecord = async (id) => {
 
 //image api:
 
-export const postImage = async (image) => {
+export const addImage = async (image) => {
   try {
     const response = await fetch(`${BASE_URL}/records/`, {
       method: 'POST',
