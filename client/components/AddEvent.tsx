@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
-
+import * as ApiService from '../src/service/ApiService';
+import moment from 'moment'
+import { setHours, setMinutes, setSeconds, setMilliseconds, endOfDay } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+
+const now = new Date();
+const currentHour = setSeconds(setMilliseconds(setMinutes(setHours(now, now.getHours()), 0), 0), 0);
+const endOfCurrentDay = endOfDay(now);
 
 type EventProps = {
   _id?: string;
@@ -14,14 +20,14 @@ type AddEventProps = {
   onAdd: (event: EventProps) => void;
 };
 
-const AddEvent = ({ onAdd }: AddEventProps) => {
+const AddEvent = () => {
   const [title, setTitle] = useState<string>('');
   const [date, setDate] = useState<Date | null>(null);
   const [venue, setVenue] = useState<string>('');
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (date !== null) {
-      onAdd({ title, date, venue });
+    if (date !== null && moment(date).isAfter(moment())) {
+      ApiService.addEvent({ title, date, venue });
       setTitle('');
       setDate(null);
       setVenue('');
@@ -33,7 +39,7 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
   };
 
   return (
-    <form className='add-form' action="/walker" onSubmit={onSubmit}>
+    <form className='add-form' action='/walker' onSubmit={onSubmit}>
       <div className='form-title'>
         <h1>Book a Walk</h1>
       </div>
@@ -57,6 +63,9 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
           selected={date}
           onSelect={handleDateChange} //when day is clicked
           onChange={handleDateChange} //only when value has changed
+          minDate={new Date()}
+          minTime={currentHour}
+          maxTime={endOfCurrentDay}
           dateFormat='Pp'
         />
       </div>

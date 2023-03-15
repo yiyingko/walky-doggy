@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import AddRecord from '../../../components/AddRecord';
+import * as ApiService from '../../service/ApiService';
 
 type Location = {
   eventId: string;
@@ -16,40 +17,13 @@ const form = () => {
   const router = useRouter();
   const { _id } = router.query as { _id: string };
 
+  const addRecord = ApiService.addRecord;
   const [location, setLocation] = useState<Location>({
     eventId: '',
     coordinates: [0, 0],
   });
 
-  useEffect(() => {
-    const postLocation = async () => {
-      const locationServer = await addLocation(location);
-    };
-    if (JSON.stringify(location) !== '{}') postLocation();
-  }, [location]);
-
-  const fetchLocation = async () => {
-    const res = await fetch(`http://localhost:3001/locations/${_id}`);
-    const data = await res.json();
-
-    return data;
-  };
-
-  const addLocation = async (location: Location) => {
-    try {
-      const response = await fetch('http://localhost:3001/locations', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(location),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const addLocation = ApiService.addLocation(location);
 
   const startTracking = () => {
     navigator.geolocation.watchPosition(
@@ -79,27 +53,20 @@ const form = () => {
 
     reader.onload = function (onLoadEvent: ProgressEvent<FileReader>) {
       setImageSrc(onLoadEvent.target?.result as string);
-      setUploadData(undefined);
+      setUploadData(null);
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
   };
 
-  const addImage = async (image: ImageData, eventId: string) => {
-    try {
-      const response = await fetch('http://localhost:3001/images', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ image, eventId }),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const addImage = ApiService.addImage(imageSrc);
+
+  useEffect(() => {
+    const postLocation = async () => {
+      const locationServer = await addLocation;
+    };
+    if (JSON.stringify(location) !== '{}') postLocation();
+  }, [location]);
 
   return (
     <>
@@ -111,7 +78,7 @@ const form = () => {
         <AddRecord eventId={_id} />
       </div>
 
-      <div className='gpsouter'>
+      {/* <div className='gpsouter'>
         <div className='gpsbutton'>
           <div>
             <label className='gpslabel'>GPS TRACKING</label>
@@ -131,7 +98,7 @@ const form = () => {
             Stop
           </button>
         </div>
-      </div>
+      </div> */}
       <div className='upload-container-outer'>
         <div className='upload-container'>
           <form className='upload-form' method='post'>
@@ -145,7 +112,6 @@ const form = () => {
                 <input type='file' name='file' id='upimage' />
               </p>
             </div>
-
             <img src={imageSrc} />
 
             {imageSrc && !uploadData && (
@@ -166,4 +132,4 @@ const form = () => {
   );
 };
 
-export default form;
+export default Form;

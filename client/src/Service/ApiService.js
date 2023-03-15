@@ -18,13 +18,18 @@ export const addEvent = async (event) => {
 };
 
 export const getEvents = async () => {
-  const events = await fetch(`${BASE_URL}/events/`);
+  const events = await fetch(`${BASE_URL}/events`);
   return events.json();
 };
 
-export const deleteEvent = async (event) => {
+export const getEventsPast = async () => {
+  const events = await fetch(`${BASE_URL}/events/past`);
+  return events.json();
+};
+
+export const deleteEvent = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/events/${event._id}`, {
+    const response = await fetch(`${BASE_URL}/events/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -67,7 +72,7 @@ export const getRecord = async (id) => {
 
 //image api:
 
-export const addImage = async (image) => {
+export const postImage = async (image) => {
   try {
     const response = await fetch(`${BASE_URL}/records/`, {
       method: 'POST',
@@ -85,4 +90,28 @@ export const addImage = async (image) => {
 export const getImage = async (image) => {
   const response = await fetch(`${BASE_URL}/images/${image.eventId}`);
   return response.json();
+};
+
+//location api:
+
+export const addLocation = async (location) => {
+  try {
+    const response = await fetch(`${BASE_URL}/locations`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(location),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getCoordinates = async (id) => {
+  const res = await fetch(`${BASE_URL}/locations/${id}`);
+  const data = await res.json();
+  return data;
 };

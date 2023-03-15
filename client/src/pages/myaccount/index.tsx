@@ -1,7 +1,6 @@
-import Head from "next/head";
-import Link from "next/link";
-// import styles from ".../styles/Home.module.css";
-import styles from "../../styles/Home.module.css"
+import Head from 'next/head';
+import Link from 'next/link';
+import styles from '../../styles/Home.module.css';
 
 const myaccount = () => {
   return (
@@ -12,11 +11,11 @@ const myaccount = () => {
       <div>
         <div>
           <h1 className={styles.title}>My Account</h1>
-          <div className="myaccount-div">
-            <Link href="/myaccount/bookawalk">
+          <div className='myaccount-div'>
+            <Link href='/myaccount/bookawalk'>
               <button className={styles.button}>Book a walk</button>
             </Link>
-            <Link href="/myaccount/viewwalks">
+            <Link href='/myaccount/viewwalks'>
               <button className={styles.button}>View My Walk History</button>
             </Link>
           </div>

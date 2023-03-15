@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-      <footer>
+      <footer data-testid="footer">
         Copyright © 2023 Walky Doggy. All rights reserved. 
       </footer>
     );
