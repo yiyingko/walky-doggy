@@ -13,12 +13,19 @@ type EventsProps = {
   formPath: string;
 };
 
-const Events = ({ events, formPath }: EventsProps) => {
+const Events = ({ events, onDelete, formPath }: EventsProps) => {
   return (
     <div id='list'>
       {events &&
         events.map((event, index) => {
-          return <Event key={index} event={event} formPath={formPath} />;
+          return (
+            <Event
+              key={index}
+              onDelete={onDelete}
+              event={event}
+              formPath={formPath}
+            />
+          );
         })}
     </div>
   );

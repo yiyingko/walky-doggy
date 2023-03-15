@@ -1,7 +1,6 @@
 import moment from 'moment';
 import Link from 'next/link';
 import { FaTrash } from 'react-icons/fa';
-import * as ApiService from '../src/service/ApiService';
 
 type EventProps = {
   event: {
@@ -10,11 +9,11 @@ type EventProps = {
     date: Date;
     venue: string;
   };
+  onDelete: (id: string) => void;
   formPath: string;
 };
 
-const Event = ({ event, formPath }: EventProps) => {
-  const deleteEvent = ApiService.deleteEvent;
+const Event = ({ event, onDelete, formPath }: EventProps) => {
   return (
     <div className='event-div'>
       <div id='event-list'>
@@ -35,10 +34,7 @@ const Event = ({ event, formPath }: EventProps) => {
             <Link href={`${formPath}${event._id}`}>
               <button className='btn'>Click</button>
             </Link>
-            <FaTrash
-              className='dele-btn'
-              onClick={() => deleteEvent(event._id)}
-            />
+            <FaTrash className='dele-btn' onClick={() => onDelete(event._id)} />
           </div>
         </div>
       </div>

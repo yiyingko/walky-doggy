@@ -17,6 +17,11 @@ const Walker = () => {
 
   const fetchEvents = ApiService.getEvents;
 
+  const deleteEvent = async (_id: string) => {
+    await ApiService.deleteEvent(_id);
+    setEvents(events.filter((event) => event._id !== _id));
+  };
+
   useEffect(() => {
     const getEvents = async () => {
       const eventsServer = await fetchEvents();
@@ -31,7 +36,7 @@ const Walker = () => {
         <title>Walky Doggy | Walker</title>
       </Head>
       <h1 className={styles.title}>Walks Schedule</h1>
-      <Events events={events} formPath='/form/' />
+      <Events events={events} onDelete={deleteEvent} formPath='/form/' />
     </>
   );
 };

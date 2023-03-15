@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Events from '../../../components/Events';
 import styles from '../../styles/Home.module.css';
+import * as ApiService from '../../service/ApiService';
 
 type EventProps = {
   _id: string;
@@ -21,19 +22,11 @@ const Viewwalks = () => {
     getEvents();
   }, []);
 
-  const fetchEvents = async () => {
-    const res = await fetch('http://localhost:3001/events/past');
-    const data = await res.json();
-
-    return data;
-  };
+  const fetchEvents = ApiService.getEvents;
 
   const deleteEvent = async (_id: string) => {
-    await fetch(`http://localhost:3001/events/${_id}`, {
-      method: 'DELETE',
-    }).then(() => {
-      setEvents(events.filter((event) => event._id !== _id));
-    });
+    await ApiService.deleteEvent(_id);
+    setEvents(events.filter((event) => event._id !== _id));
   };
 
   return (
