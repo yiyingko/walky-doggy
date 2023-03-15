@@ -18,7 +18,12 @@ export const addEvent = async (event) => {
 };
 
 export const getEvents = async () => {
-  const events = await fetch(`${BASE_URL}/events/`);
+  const events = await fetch(`${BASE_URL}/events`);
+  return events.json();
+};
+
+export const getEventsPast = async () => {
+  const events = await fetch(`${BASE_URL}/events/past`);
   return events.json();
 };
 

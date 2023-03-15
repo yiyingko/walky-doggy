@@ -22,7 +22,7 @@ const Viewwalks = () => {
     getEvents();
   }, []);
 
-  const fetchEvents = ApiService.getEvents;
+  const fetchEvents = ApiService.getEventsPast;
 
   const deleteEvent = async (_id: string) => {
     await ApiService.deleteEvent(_id);
