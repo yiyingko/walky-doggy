@@ -21,8 +21,8 @@ const Events = ({ events, onDelete, formPath }: EventsProps) => {
           return (
             <Event
               key={index}
-              event={event}
               onDelete={onDelete}
+              event={event}
               formPath={formPath}
             />
           );

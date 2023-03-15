@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl';
 import { clearStorage } from 'mapbox-gl';
+import * as ApiService from '../../service/ApiService';
 
 type Image = {
   _id: string;
@@ -22,15 +23,6 @@ const Formuser = () => {
   const [records, setRecords] = useState<Record[]>([]);
   const [images, setImages] = useState(() => []);
 
-  /*getting record*/
-  useEffect(() => {
-    const getRecords = async () => {
-      const eventRecords = await fetchEventRecords();
-      setRecords(eventRecords);
-    };
-    getRecords();
-  }, []);
-
   const fetchEventRecords = async () => {
     const res = await fetch(`http://localhost:3001/records/${_id}`);
     const data = await res.json();
@@ -41,40 +33,41 @@ const Formuser = () => {
 
   useEffect(() => {
     const getImages = async () => {
-      const eventImages = await fetchEventImages();
+      const eventImages = await fetchEventImages;
       setImages(eventImages);
     };
     getImages();
   }, []);
 
-  const fetchEventImages = async () => {
-    const res = await fetch(`http://localhost:3001/images/${_id}`);
-    const data = await res.json();
-    return data;
-  };
+  const fetchEventImages = ApiService.getImage(images);
 
   /**fetch location */
   const [coordinates, setCoordinates] = useState({});
 
   useEffect(() => {
     const getCoordinates = async () => {
-      const coordinatesServer = await fetchCoordinates();
+      const coordinatesServer = await fetchCoordinates;
       setCoordinates(coordinatesServer);
     };
     getCoordinates();
   }, []);
 
-  const fetchCoordinates = async () => {
-    const res = await fetch(`http://localhost:3001/locations/${_id}`);
-    const data = await res.json();
-    return data;
-  };
+  const fetchCoordinates = ApiService.getCoordinates(_id);
 
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(51.4774);
   const [zoom, setZoom] = useState(14);
+
+  /*getting record*/
+  useEffect(() => {
+    const getRecords = async () => {
+      const eventRecords = await fetchEventRecords();
+      setRecords(eventRecords);
+    };
+    getRecords();
+  }, []);
 
   //   useEffect(() => {
   //     if (map.current) return; // initialize map only once

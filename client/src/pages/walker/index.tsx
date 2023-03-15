@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Events from '../../../components/Events';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Home.module.css';
+import * as ApiService from '../../service/ApiService';
 
 type EventProps = {
   _id?: string;
@@ -14,6 +15,13 @@ type EventProps = {
 const Walker = () => {
   const [events, setEvents] = useState<EventProps[]>([]);
 
+  const fetchEvents = ApiService.getEvents;
+
+  const deleteEvent = async (_id: string) => {
+    await ApiService.deleteEvent(_id);
+    setEvents(events.filter((event) => event._id !== _id));
+  };
+
   useEffect(() => {
     const getEvents = async () => {
       const eventsServer = await fetchEvents();
@@ -21,21 +29,6 @@ const Walker = () => {
     };
     getEvents();
   }, []);
-
-  const fetchEvents = async () => {
-    const res = await fetch('http://localhost:3001/events');
-    const data = await res.json();
-
-    return data;
-  };
-
-  const deleteEvent = async (_id: string) => {
-    await fetch(`http://localhost:3001/events/${_id}`, {
-      method: 'DELETE',
-    }).then(() => {
-      setEvents(events.filter((event) => event._id !== _id));
-    });
-  };
 
   return (
     <>
