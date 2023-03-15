@@ -83,6 +83,7 @@ label{
 
 .add-form {
   margin-bottom: 40px;
+  min-height: 40vh;
 }
 
 .form-control {
@@ -230,8 +231,9 @@ h6{
 
 /** upload form */
 .upload-form {
+  justify-content: center;
   font-size: 1em;
-  padding: 1em;
+  /* padding: 1em; */
   border: none;
   border-radius: .5em;
 } */
@@ -249,7 +251,7 @@ h6{
 .upload-container {
   display: grid;
   grid-template-rows: 1fr auto;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
   margin: 0 auto;
 }  
 /**home page*/
@@ -274,17 +276,20 @@ h6{
 /**walker-record form*/
 
 .addform{
-  width: 400px;
-  height: 200px;
+  width: 50vh;
+  height: 35vh;
   margin: 5px auto;
   border: 4px solid rgb(73, 72, 74);
   padding: 2px;
   border-radius: 5px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 
 .submit-div{
   display: flex;
+  flex-direction: column;
   justify-content:center;
   align-items: center;
 
@@ -354,7 +359,9 @@ margin-top: 5px;
 }
 
 .upload-container-outer{
+
   display: flex;
+  flex-direction: column;
   justify-content:center;
   align-items: center;
   margin-top: 5px;

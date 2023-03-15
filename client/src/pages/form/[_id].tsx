@@ -12,7 +12,7 @@ type ImageData = {
   secure_url: string;
 };
 
-const form = () => {
+const Form = () => {
   const router = useRouter();
   const { _id } = router.query as { _id: string };
 
@@ -86,9 +86,9 @@ const form = () => {
   };
 
   /* img uploader */
-  const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
-  const [uploadData, setUploadData] = useState<ImageData | undefined>(
-    undefined
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [uploadData, setUploadData] = useState<ImageData | null>(
+    null
   );
 
   const handleOnChange = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +96,7 @@ const form = () => {
 
     reader.onload = function (onLoadEvent: ProgressEvent<FileReader>) {
       setImageSrc(onLoadEvent.target?.result as string);
-      setUploadData(undefined);
+      setUploadData(null);
     };
 
     reader.readAsDataURL(changeEvent.target.files[0]);
@@ -124,11 +124,11 @@ const form = () => {
         <title>Walky Doggy | walk form</title>
       </Head>
       <p>walk: {_id}</p>
-      <div className='addform'>
+      <div className='addform' data-testid="add-record">
         <AddRecord onAdd={addRecord} eventId={_id} />
       </div>
 
-      <div className='gpsouter'>
+      {/* <div className='gpsouter'>
         <div className='gpsbutton'>
           <div>
             <label className='gpslabel'>GPS TRACKING</label>
@@ -148,17 +148,18 @@ const form = () => {
             Stop
           </button>
         </div>
-      </div>
+      </div> */}
       <div className='upload-container-outer'>
         <div className='upload-container'>
           <form className='upload-form' method='post'>
             <div>
-              <label className='uploadlabel'>Upload Photo</label>
+              <label className='uploadlabel' htmlFor='upimage'>Upload Photo</label>
             </div>
-            <p>
-              <input type='file' name='file' />
-            </p>
-
+            <div>
+              <p>
+                <input type='file' name='file' id='upimage'/>
+              </p>
+            </div>
             <img src={imageSrc} />
 
             {imageSrc && !uploadData && (
@@ -179,4 +180,4 @@ const form = () => {
   );
 };
 
-export default form;
+export default Form;

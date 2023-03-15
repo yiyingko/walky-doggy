@@ -45,7 +45,7 @@ export const deleteEvent = async (event) => {
 
 //records api:
 
-export const addRecord = async (record) => {
+export const postRecord = async (record) => {
   try {
     const response = await fetch(`${BASE_URL}/records/${record._id}`, {
       method: "POST", 
@@ -68,7 +68,7 @@ export const getRecord = async (record) => {
 
 //image api:
 
-export const addImage = async (image) => {
+export const postImage = async (image) => {
   try {
     const response = await fetch(`${BASE_URL}/records/`, {
       method: "POST", 

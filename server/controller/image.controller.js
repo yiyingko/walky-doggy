@@ -7,6 +7,7 @@ exports.getEventImages = (req, res) => {
 };
 
 exports.postImage = (req, res) => {
+  console.log('posted a image')
   try {
     imageModel
       .create(req.body)
