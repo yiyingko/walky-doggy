@@ -101,7 +101,7 @@ const Form = () => {
       </div> */}
       <div className='upload-container-outer'>
         <div className='upload-container'>
-          <form className='upload-form' method='post'>
+          <form className='upload-form' method='post' onChange={handleOnChange}>
             <div>
               <label className='uploadlabel' htmlFor='upimage'>
                 Upload Photo
