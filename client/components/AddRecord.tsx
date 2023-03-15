@@ -1,18 +1,17 @@
 import { useState } from 'react';
+import * as ApiService from '../src/service/ApiService';
 
 type AddRecordProps = {
-  onAdd: (record: { eventId: string; pee: boolean; poo: boolean }) => void;
   eventId: string;
 };
 
-const AddRecord = ({ onAdd, eventId }: AddRecordProps) => {
+const AddRecord = ({ eventId }: AddRecordProps) => {
   const [pee, setPee] = useState(false);
   const [poo, setPoo] = useState(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    console.log('_id: ' + eventId);
     e.preventDefault();
-    onAdd({ eventId: eventId, pee, poo });
+    ApiService.addRecord({ eventId, pee, poo });
     setPee(false);
     setPoo(false);
   };
