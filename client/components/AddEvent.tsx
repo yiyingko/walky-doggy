@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import * as ApiService from '../src/service/ApiService';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,14 +15,14 @@ type AddEventProps = {
   onAdd: (event: EventProps) => void;
 };
 
-const AddEvent = ({ onAdd }: AddEventProps) => {
+const AddEvent = () => {
   const [title, setTitle] = useState<string>('');
   const [date, setDate] = useState<Date | null>(null);
   const [venue, setVenue] = useState<string>('');
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (date !== null) {
-      onAdd({ title, date, venue });
+      ApiService.addEvent({ title, date, venue });
       setTitle('');
       setDate(null);
       setVenue('');
@@ -33,7 +34,7 @@ const AddEvent = ({ onAdd }: AddEventProps) => {
   };
 
   return (
-    <form className='add-form' action="/walker" onSubmit={onSubmit}>
+    <form className='add-form' action='/walker' onSubmit={onSubmit}>
       <div className='form-title'>
         <h1>Book a Walk</h1>
       </div>

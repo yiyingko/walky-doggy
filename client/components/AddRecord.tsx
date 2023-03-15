@@ -25,7 +25,9 @@ const AddRecord = ({ onAdd, eventId }: AddRecordProps) => {
       <div>
         <div>
           <div className='submit-form-control'>
-            <label className='adjustfont' htmlFor="peecheck">PEE</label>
+            <label className='adjustfont' htmlFor='peecheck'>
+              PEE
+            </label>
             <input
               type='checkbox'
               name='pee'
