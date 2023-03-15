@@ -3,11 +3,10 @@ import '@testing-library/jest-dom';
 import AddEvent from '../components/AddEvent.tsx';
 
 describe('AddEvent component', () => {
-  console.log(AddEvent);
   const mockOnAdd = jest.fn();
 
   beforeEach(() => {
-    const { getByPlaceholderText } = render(<AddEvent onAdd={mockOnAdd} />);
+    render(<AddEvent onAdd={mockOnAdd} />);
   });
 
   test('should render the form correctly', () => {
