@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import moment from 'moment';
-import Event from '../components/Event';
+import Event from '../src/components/Event';
 
 const testEvent = {
   _id: '123',

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Events from '../../../components/Events';
+import Events from '../../components/Events';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Home.module.css';
 import * as ApiService from '../../service/ApiService';

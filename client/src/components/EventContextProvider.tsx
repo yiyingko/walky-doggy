@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import * as ApiService from '../src/service/ApiService';
+import * as ApiService from '../service/ApiService';
 
 export const EventContext = createContext(null);
 

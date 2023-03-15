@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import AddEvent from '../../../components/AddEvent';
+import AddEvent from '../../components/AddEvent';
 
 const Bookawalk = () => {
   return (

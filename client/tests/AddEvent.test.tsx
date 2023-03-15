@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AddEvent from '../components/AddEvent.tsx';
+import AddEvent from '../src/components/AddEvent.tsx';
 
 describe('AddEvent component', () => {
   const mockOnAdd = jest.fn();

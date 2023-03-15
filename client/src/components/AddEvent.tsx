@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
-import * as ApiService from '../src/service/ApiService';
-import moment from 'moment'
-import { setHours, setMinutes, setSeconds, setMilliseconds, endOfDay } from 'date-fns';
+import * as ApiService from '../service/ApiService';
+import moment from 'moment';
+import {
+  setHours,
+  setMinutes,
+  setSeconds,
+  setMilliseconds,
+  endOfDay,
+} from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const now = new Date();
-const currentHour = setSeconds(setMilliseconds(setMinutes(setHours(now, now.getHours()), 0), 0), 0);
+const currentHour = setSeconds(
+  setMilliseconds(setMinutes(setHours(now, now.getHours()), 0), 0),
+  0
+);
 const endOfCurrentDay = endOfDay(now);
 
 type EventProps = {

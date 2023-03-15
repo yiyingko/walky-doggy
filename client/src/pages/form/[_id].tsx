@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-import AddRecord from '../../../components/AddRecord';
+import AddRecord from '../../components/AddRecord';
 import * as ApiService from '../../service/ApiService';
 
 type Location = {
@@ -44,23 +44,6 @@ const Form = () => {
     return;
   };
 
-  /* img uploader */
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
-  const [uploadData, setUploadData] = useState<ImageData | null>(null);
-
-  const handleOnChange = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
-    const reader = new FileReader();
-
-    reader.onload = function (onLoadEvent: ProgressEvent<FileReader>) {
-      setImageSrc(onLoadEvent.target?.result as string);
-      setUploadData(null);
-    };
-
-    reader.readAsDataURL(changeEvent.target.files[0]);
-  };
-
-  const addImage = ApiService.addImage(imageSrc);
-
   useEffect(() => {
     const postLocation = async () => {
       const locationServer = await addLocation;
@@ -76,57 +59,6 @@ const Form = () => {
       <p>walk: {_id}</p>
       <div className='addform' data-testid='add-record'>
         <AddRecord eventId={_id} />
-      </div>
-
-      {/* <div className='gpsouter'>
-        <div className='gpsbutton'>
-          <div>
-            <label className='gpslabel'>GPS TRACKING</label>
-          </div>
-          <button
-            id='start'
-            className='btn-record'
-            onClick={() => startTracking()}
-          >
-            Start
-          </button>
-          <button
-            id='stop'
-            className='btn-record'
-            onClick={() => stopTracking()}
-          >
-            Stop
-          </button>
-        </div>
-      </div> */}
-      <div className='upload-container-outer'>
-        <div className='upload-container'>
-          <form className='upload-form' method='post' onChange={handleOnChange}>
-            <div>
-              <label className='uploadlabel' htmlFor='upimage'>
-                Upload Photo
-              </label>
-            </div>
-            <div>
-              <p>
-                <input type='file' name='file' id='upimage' />
-              </p>
-            </div>
-            <img src={imageSrc} />
-
-            {imageSrc && !uploadData && (
-              <p>
-                <button>Upload Files</button>
-              </p>
-            )}
-
-            {uploadData && (
-              <code>
-                <pre>{JSON.stringify(uploadData, null, 2)}</pre>
-              </code>
-            )}
-          </form>
-        </div>
       </div>
     </>
   );
