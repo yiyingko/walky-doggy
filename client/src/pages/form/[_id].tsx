@@ -13,7 +13,7 @@ type ImageData = {
   secure_url: string;
 };
 
-const form = () => {
+const Form = () => {
   const router = useRouter();
   const { _id } = router.query as { _id: string };
 
