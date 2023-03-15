@@ -16,21 +16,6 @@ const form = () => {
   const router = useRouter();
   const { _id } = router.query as { _id: string };
 
-  const addRecord = async (record: Record<string, any>) => {
-    try {
-      const response = await fetch('http://localhost:3001/records', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(record),
-      });
-      const result = await response.json();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const [location, setLocation] = useState<Location>({
     eventId: '',
     coordinates: [0, 0],
@@ -86,10 +71,8 @@ const form = () => {
   };
 
   /* img uploader */
-  const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
-  const [uploadData, setUploadData] = useState<ImageData | undefined>(
-    undefined
-  );
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [uploadData, setUploadData] = useState<ImageData | null>(null);
 
   const handleOnChange = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader();
@@ -124,8 +107,8 @@ const form = () => {
         <title>Walky Doggy | walk form</title>
       </Head>
       <p>walk: {_id}</p>
-      <div className='addform'>
-        <AddRecord onAdd={addRecord} eventId={_id} />
+      <div className='addform' data-testid='add-record'>
+        <AddRecord eventId={_id} />
       </div>
 
       <div className='gpsouter'>
@@ -153,11 +136,15 @@ const form = () => {
         <div className='upload-container'>
           <form className='upload-form' method='post'>
             <div>
-              <label className='uploadlabel'>Upload Photo</label>
+              <label className='uploadlabel' htmlFor='upimage'>
+                Upload Photo
+              </label>
             </div>
-            <p>
-              <input type='file' name='file' />
-            </p>
+            <div>
+              <p>
+                <input type='file' name='file' id='upimage' />
+              </p>
+            </div>
 
             <img src={imageSrc} />
 
