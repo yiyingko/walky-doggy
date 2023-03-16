@@ -10,6 +10,7 @@ import {
   endOfDay,
 } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+import { postWalk } from '../Service/api' ;
 
 const now = new Date();
 const currentHour = setSeconds(
@@ -36,7 +37,8 @@ const AddEvent = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     if (date !== null && moment(date).isAfter(moment())) {
-      ApiService.addEvent({ title, date, venue });
+      // ApiService.addEvent({ title, date, venue });
+      // postWalk({name:title, date, venue});
       setTitle('');
       setDate(null);
       setVenue('');
