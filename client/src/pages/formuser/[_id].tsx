@@ -6,6 +6,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl';
 import { clearStorage } from 'mapbox-gl';
 import * as ApiService from '../../service/ApiService';
+import { getWalk } from '../../Service/api';
 
 type Image = {
   _id: string;

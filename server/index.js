@@ -1,5 +1,5 @@
-const express = require('express');
-const app = express();
+const Express = require('express');
+const app = Express();
 const cors = require('cors')
 const router = require('./router');
 const port = 3001;
@@ -9,7 +9,7 @@ const recordRouter = require('./router/record.router')
 const locationRouter= require('./router/location.router')
 const mongoConnection = require('./models/index')
 
-app.use(express.json());
+app.use(Express.json());
 app.use(cors({origin: '*'}));
 app.use('/events',eventRouter );
 app.use('/images',imageRouter );

@@ -2,7 +2,7 @@ import Event from './Event';
 
 type EventProps = {
   _id: string;
-  title: string;
+  name: string;
   date: Date;
   venue: string;
 };

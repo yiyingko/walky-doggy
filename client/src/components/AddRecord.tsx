@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import * as ApiService from '../service/ApiService';
+import { updateWalk } from '../Service/api';
 
 type AddRecordProps = {
   eventId: string;
@@ -11,6 +13,8 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
   const [image, setImage] = useState<string | null>(null);
   const [coordinates, setCoordinates] = useState([]);
   const [uploadData, setUploadData] = useState<ImageData | null>(null);
+  const router = useRouter();
+  const { _id } = router.query
 
   const addImage = ApiService.addImage(image);
 
@@ -26,8 +30,13 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Update the new API
-    // ApiService.addRecord({ pee, poo, image, coordinates });
+    let info = {
+      records: {
+        pee: pee,
+        poo: poo
+      }
+    }
+    updateWalk(_id, info)
     setPee(false);
     setPoo(false);
     setImage('');

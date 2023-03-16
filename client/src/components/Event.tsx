@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 type EventProps = {
   event: {
     _id: string;
-    title: string;
+    name: string;
     date: Date;
     venue: string;
   };
@@ -22,7 +22,7 @@ const Event = ({ event, onDelete, formPath }: EventProps) => {
             {moment(event.date).format('Do[\n]MMM')}
           </div>
           <div className='event-outer'>
-            <div className='list-title'>{event.title} </div>
+            <div className='list-title'>{event.name} </div>
             <div className='list-date'>
               <p>{moment(event.date).format('hh:mm a - MMMM  Do, YYYY')}</p>
             </div>
