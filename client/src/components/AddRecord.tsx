@@ -34,7 +34,8 @@ const AddRecord = ({ eventId }: AddRecordProps) => {
       records: {
         pee: pee,
         poo: poo
-      }
+      },
+      image: image
     }
     updateWalk(_id, info)
     setPee(false);
