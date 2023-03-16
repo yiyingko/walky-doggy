@@ -1,13 +1,12 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Events from '../../components/Events';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/Home.module.css';
-import * as ApiService from '../../service/ApiService';
+import { getAllWalks, deleteWalk } from '../../Service/api';
 
 type EventProps = {
   _id?: string;
-  title: string;
+  name: string;
   date: Date;
   venue: string;
 };
@@ -15,16 +14,14 @@ type EventProps = {
 const Walker = () => {
   const [events, setEvents] = useState<EventProps[]>([]);
 
-  const fetchEvents = ApiService.getEvents;
-
   const deleteEvent = async (_id: string) => {
-    await ApiService.deleteEvent(_id);
+    await deleteWalk(_id);
     setEvents(events.filter((event) => event._id !== _id));
   };
 
   useEffect(() => {
     const getEvents = async () => {
-      const eventsServer = await fetchEvents();
+      const eventsServer = await getAllWalks();
       setEvents(eventsServer);
     };
     getEvents();

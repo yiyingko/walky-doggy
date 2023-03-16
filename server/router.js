@@ -4,7 +4,7 @@ const infoWalkController = require('./controller/infoWalk.controller');
 
 router.get('/walks/:id', infoWalkController.getWalk);
 router.get('/walks/', infoWalkController.getAllWalks);
-router.post('/walks/:id', infoWalkController.postWalk);
+router.post('/walks/', infoWalkController.postWalk);
 router.delete('/walks/:id', infoWalkController.deleteWalk);
 router.put('/walks/:id', infoWalkController.updateWalk);
 
